@@ -18,28 +18,17 @@ export const createProduct = async (req,res) => {
     }
 }
 
-export const getProducts = async (req,res) => {
+export const getProducts = async (req, res) => {
     try {
         const products = await Product.find();
-        if(products.length === 0) {
-            return res.status(404).json({
-                message: "No se encontraron productos"
-            })
-        }else {
-            return res.status(200).json({
-                message: "Productos encontrados",
-                products,
-            });
-        }
-            
-    } catch (error) {
-        console.error("Error al obtener los productos", error);
-        return res.status(500).json({
-            message: "Error al obtener los productos",
-            error: error.message
+        return res.status(200).json({
+            message: "Productos encontrados",
+            products,  // devuelve [] si no hay nada
         });
+    } catch (error) {
+        return res.status(500).json({ message: "Error al obtener los productos", error: error.message });
     }
-} 
+}
 
 export const updateProduct = async (req,res) => {
  try {
@@ -74,7 +63,7 @@ export const updateProduct = async (req,res) => {
 export const deleteProduct = async (req,res) => {
     try {
         const id = req.params.id;   
-        const product = await product.findByIdAndDelete(id);
+        const product = await Product.findByIdAndDelete(id);
         if(!product) {
             return res.status(404).json({
                 message: "Producto no encontrado"
