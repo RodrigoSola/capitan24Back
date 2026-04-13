@@ -1,4 +1,4 @@
-import bodyParser from "body-parser"
+
 import express from "express"
 import { PORT } from "./config.js"
 import cors from "cors"
@@ -18,8 +18,6 @@ app.use(cors({
 }))
 
 app.use(express.json({ limit: '50mb' }));
-app.use(bodyParser.json({ limit: '50mb' }))
-app.use(bodyParser.urlencoded({ extended: true }))
 app.use(cookieParser())
 
 app.use(session({
