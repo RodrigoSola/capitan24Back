@@ -11,7 +11,7 @@ import productRouter from "./routes/productRoutes.js"
 const app = express()
 
 app.use(cors({
-    origin: "*",
+    origin: "https://capitan24front.vercel.app",
     methods: [ "GET", "PUT", "POST", "DELETE", "OPTIONS"],
     credentials: true,
     optionsSuccessStatus: 200
